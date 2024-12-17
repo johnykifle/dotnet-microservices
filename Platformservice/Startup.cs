@@ -26,6 +26,8 @@ namespace Platformservice
 
             services.AddControllers();
 
+            services.AddAutoMapper (AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Platformservice", Version = "v1" });
