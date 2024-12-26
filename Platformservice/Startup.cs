@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Platformservice.Data;
 using Microsoft.EntityFrameworkCore;
+using Platformservice.SyncDataServices.Http;
 
 namespace Platformservice
 {
@@ -24,6 +25,8 @@ namespace Platformservice
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
 
+            services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
             services.AddControllers();
 
             services.AddAutoMapper (AppDomain.CurrentDomain.GetAssemblies());
@@ -32,6 +35,8 @@ namespace Platformservice
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Platformservice", Version = "v1" });
             });
+
+            Console.WriteLine($" CommandService Endpoint {Configuration["CommandService"]}");
             // ...existing code...
         }
 
